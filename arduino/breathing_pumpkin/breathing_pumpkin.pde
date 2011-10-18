@@ -1,14 +1,19 @@
+// http://www.tmatthew.net/blog/breathing_led
 
-void setup()  { 
-  pinMode(9, OUTPUT);
-  pinMode(13, OUTPUT);
-} 
+int ledPin = 9;
+int x = 0;
 
-void loop()  {
-  digitalWrite(13, HIGH);
-  digitalWrite(9, HIGH);
-  delay(1000);
-  digitalWrite(13, LOW);
-  digitalWrite(9, LOW);
-  delay(1000);
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int outVal = yforx(x);
+  analogWrite(ledPin, outVal);
+  delay(18);
+  x++;
+}
+
+int yforx(int x) {
+  return (-250*abs(sin(x*0.01)))+255; //sine wave
 }
